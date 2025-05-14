@@ -1,0 +1,8 @@
+POST localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "username": "user",
+  "email": "albert@contact.com",
+  "password": "123456"
+}

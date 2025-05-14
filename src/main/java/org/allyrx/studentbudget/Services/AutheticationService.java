@@ -5,6 +5,7 @@ import org.allyrx.studentbudget.Entites.Role;
 import org.allyrx.studentbudget.Entites.User;
 import org.allyrx.studentbudget.Enum.RoleEnum;
 import org.allyrx.studentbudget.Repository.AuthenticationRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AutheticationService {
     private final AuthenticationRepository authenticationRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public void register(User user){
 
@@ -29,6 +31,12 @@ public class AutheticationService {
         //Mettons le role pardefaut en etudiant
         Role role = new Role();
         role.setRoleName(RoleEnum.STUDENT);
+        user.setRole(role);
+        user.setEnabled(false);
+
+        //cryptage du mot de passe
+        String mdpCrypter = passwordEncoder.encode(user.getPassword());
+        user.setPassword(mdpCrypter);
 
         authenticationRepository.save(user);
     }
