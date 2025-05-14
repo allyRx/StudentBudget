@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgresDb
+    environment:
+      POSTGRES_DB: financesControlDb
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+    ports:
+      - "5431:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    container_name: adminerContainer
+    restart: always
+    ports:
+      - "5003:8080"
+
+  smtp4dev:
+    image: rnwood/smtp4dev:v3
+    container_name: smtp4dev-test2
+    restart: always
+    ports:
+      - "5002:80"    # Interface Web
+      - "128:25"    # Port SMTP
+volumes:
+  data:
+  smtp4dev-data:
