@@ -3,6 +3,15 @@ Content-Type: application/json
 
 {
   "username": "user",
-  "email": "albert@contact.com",
+  "email": "ally@contact.com",
   "password": "123456"
+}
+
+###
+
+POST localhost:8000/api/activate
+Content-Type: application/json
+
+{
+  "code":"775386"
 }
