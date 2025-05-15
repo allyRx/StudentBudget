@@ -7,7 +7,6 @@ import org.allyrx.studentbudget.Entites.Validation;
 import org.allyrx.studentbudget.Enum.RoleEnum;
 import org.allyrx.studentbudget.Repository.AuthenticationRepository;
 import org.allyrx.studentbudget.Repository.ValidationRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
