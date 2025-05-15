@@ -7,6 +7,8 @@ import org.allyrx.studentbudget.Entites.Validation;
 import org.allyrx.studentbudget.Enum.RoleEnum;
 import org.allyrx.studentbudget.Repository.AuthenticationRepository;
 import org.allyrx.studentbudget.Repository.ValidationRepository;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class AuthenticationService {
+public class AuthenticationService implements UserDetailsService {
 
     private final AuthenticationRepository authenticationRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -73,4 +75,12 @@ public class AuthenticationService {
         validation.setActivateAt(Instant.now());
         validationRepository.save(validation);
     }
+
+    @Override
+    public User loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        return authenticationRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
 }

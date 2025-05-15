@@ -15,3 +15,13 @@ Content-Type: application/json
 {
   "code":"775386"
 }
+
+###
+
+POST localhost:8000/api/connexion
+Content-Type: application/json
+
+{
+  "email": "ally@contact.com",
+  "password": "123456"
+}
