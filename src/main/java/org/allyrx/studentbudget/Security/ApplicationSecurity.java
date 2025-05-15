@@ -20,6 +20,7 @@ public class ApplicationSecurity {
                         .csrf(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers(HttpMethod.POST , "/login").permitAll()
+                                .requestMatchers(HttpMethod.POST , "/activate").permitAll()
                                 .anyRequest().authenticated()
                         ).build();
     }
