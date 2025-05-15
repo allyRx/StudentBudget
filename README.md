@@ -1,7 +1,5 @@
 # Projet en cours...
 
-# Objectif vise : 
-
 # 💰 Student Budget Control
 
 > Application de gestion budgétaire pour étudiants avec supervision parentale.
