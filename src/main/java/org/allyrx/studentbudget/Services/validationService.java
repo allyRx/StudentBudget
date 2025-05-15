@@ -1,7 +1,7 @@
 package org.allyrx.studentbudget.Services;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
 import org.allyrx.studentbudget.Entites.User;
 import org.allyrx.studentbudget.Entites.Validation;
 import org.allyrx.studentbudget.Repository.ValidationRepository;
