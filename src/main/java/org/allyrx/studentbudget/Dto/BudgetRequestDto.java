@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class BudgetRequestDto {
@@ -20,4 +22,5 @@ public class BudgetRequestDto {
     private String amount;
     @NotNull(message = "L'identifiant de l'utilisateur est requis")
     private Long userId;
+    private LocalDateTime createdAt;
 }

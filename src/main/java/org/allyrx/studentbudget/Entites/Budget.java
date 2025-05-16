@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+
 
 
 @Entity
@@ -19,4 +21,5 @@ public class Budget {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    private LocalDateTime createdAt;
 }

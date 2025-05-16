@@ -8,7 +8,7 @@ import org.allyrx.studentbudget.Entites.User;
 import org.allyrx.studentbudget.Repository.AuthenticationRepository;
 import org.allyrx.studentbudget.Repository.BudgetRepository;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,8 +19,9 @@ public class BudgetService {
     private final AuthenticationRepository authenticationRepository;
     private BudgetRepository  budgetRepository;
 
-    public void addBudget(BudgetRequestDto budgetRequestDto){
 
+    public void addBudget(BudgetRequestDto budgetRequestDto){
+        LocalDateTime now = LocalDateTime.now();
         //Verifions si l'user est bien la
         Optional <User> user = authenticationRepository.findById(budgetRequestDto.getUserId());
         if(user.isEmpty()){ throw new RuntimeException("User not found"); }
@@ -31,17 +32,18 @@ public class BudgetService {
         budget.setDescription(budgetRequestDto.getDescription());
         budget.setMonth(budgetRequestDto.getMonth());
         budget.setUser(user.get());
-
+        budget.setCreatedAt(now);
         budgetRepository.save(budget);
 
     }
 
-
+    //Affichage de tous les budgets
     public List<BudgetResponseDto> getAllBudgets(){
         List<Budget> budgets = budgetRepository.findAll();
 
         return budgets.stream().map(budget -> {
             User user = budget.getUser(); // L'utilisateur est déjà dans le budget via @ManyToOne
+
 
             return new BudgetResponseDto(
                     budget.getId(),
@@ -55,11 +57,9 @@ public class BudgetService {
             );
         }).collect(Collectors.toList());
     }
-
-
-
+    //recuperation par ID
     public BudgetResponseDto getBudgetById(Long id){
-       Optional<Budget> budget = budgetRepository.findById(id);
+        Optional<Budget> budget = budgetRepository.findById(id);
         if(budget.isEmpty()){ throw new RuntimeException("Budget not found"); }
 
         // On récupère l'utilisateur lié au budget
@@ -79,4 +79,43 @@ public class BudgetService {
                 user.getEmail()
         );
     }
+
+
+    //mise a jour id
+    public void updateBudget(BudgetRequestDto budgetRequestDto, Long id) {
+        Optional<Budget> optionalBudget = budgetRepository.findById(id);
+        if (optionalBudget.isEmpty()) {
+            throw new RuntimeException("Budget not found with ID: " + id);
+        }
+
+        Budget budget = optionalBudget.get();
+
+        // Mise à jour des champs simples
+        budget.setAmount(budgetRequestDto.getAmount());
+        budget.setDescription(budgetRequestDto.getDescription());
+        budget.setMonth(budgetRequestDto.getMonth());
+        budget.setMotif(budgetRequestDto.getMotif());
+        budget.setCreatedAt(LocalDateTime.now());
+
+        // Mise à jour de l'utilisateur associé si un userId est fourni
+        if (budgetRequestDto.getUserId() != null) {
+            Optional<User> optionalUser = authenticationRepository.findById(budgetRequestDto.getUserId());
+            if (optionalUser.isEmpty()) {
+                throw new RuntimeException("User not found with ID: " + budgetRequestDto.getUserId());
+            }
+            budget.setUser(optionalUser.get());
+        }
+
+        // Sauvegarde du budget mis à jour
+        budgetRepository.save(budget);
+    }
+
+    public void deleteBudget(Long id) {
+        Optional<Budget> optionalBudget = budgetRepository.findById(id);
+        if (optionalBudget.isEmpty()) {throw new RuntimeException("Budget not found with ID: " + id);}
+        budgetRepository.deleteById(id);
+    }
+
 }
+
+

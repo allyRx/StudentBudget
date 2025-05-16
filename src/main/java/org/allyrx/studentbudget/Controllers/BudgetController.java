@@ -30,10 +30,24 @@ public class BudgetController {
         return  budgetService.getAllBudgets();
     }
 
+
     @GetMapping(path = "{id}")
     @ResponseStatus(HttpStatus.OK)
     public BudgetResponseDto getBudgetById(@PathVariable("id") Long id){
         return  budgetService.getBudgetById(id);
+    }
+
+
+    @PutMapping(path = "{id}")
+    public void updateBudget(@RequestBody BudgetRequestDto budgetRequestDto , @PathVariable("id") Long id){
+        budgetService.updateBudget(budgetRequestDto, id);
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(path = "{id}")
+    public void deleteBudget(@PathVariable("id") Long id){
+        budgetService.deleteBudget(id);
     }
 
 }
