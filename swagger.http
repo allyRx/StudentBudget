@@ -1,4 +1,4 @@
-POST localhost:8000/api/login
+POST localhost:8000/api/auth/register
 Content-Type: application/json
 
 {
@@ -18,10 +18,23 @@ Content-Type: application/json
 
 ###
 
-POST localhost:8000/api/connexion
+POST localhost:8000/api/auth/connexion
 Content-Type: application/json
 
 {
   "email": "ally@contact.com",
   "password": "123456"
+}
+
+###
+POST localhost:8000/api/budget
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+
+{
+  "motif": "Dépenses mensuelles",
+  "month": "Juin",
+  "description": "Budget pour Juin, couvrant la nourriture, transport, etc.",
+  "amount": "200000",
+  "userId": 352
 }
