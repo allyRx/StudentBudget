@@ -14,6 +14,7 @@ import java.util.List;
 @Data @AllArgsConstructor @NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
+
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private String username;
@@ -23,6 +24,11 @@ public class User implements UserDetails {
     private Boolean enabled;
     @OneToOne(cascade = CascadeType.ALL)
     private Role role;
+
+    @OneToMany( mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Budget> budgets;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -34,9 +34,7 @@ public class ApplicationSecurity {
                 http
                         .csrf(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers(HttpMethod.POST , "/connexion").permitAll()
-                                .requestMatchers(HttpMethod.POST , "/register").permitAll()
-                                .requestMatchers(HttpMethod.POST , "/activate").permitAll()
+                                .requestMatchers(HttpMethod.POST , "/auth/**").permitAll()
                                 .anyRequest().authenticated())
                                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
