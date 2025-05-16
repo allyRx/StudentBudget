@@ -1,3 +1,4 @@
+//Inscription
 POST localhost:8000/api/auth/register
 Content-Type: application/json
 
@@ -9,6 +10,7 @@ Content-Type: application/json
 
 ###
 
+//activation du compte
 POST localhost:8000/api/activate
 Content-Type: application/json
 
@@ -17,7 +19,7 @@ Content-Type: application/json
 }
 
 ###
-
+//authentification
 POST localhost:8000/api/auth/connexion
 Content-Type: application/json
 
@@ -27,6 +29,7 @@ Content-Type: application/json
 }
 
 ###
+//Ajout budget
 POST localhost:8000/api/budget
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
@@ -38,3 +41,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
   "amount": "200000",
   "userId": 352
 }
+
+
+###
+//recuperation budgets
+GET localhost:8000/api/budget
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+
+###
+//Recuperation de budgets par Id
+GET localhost:8000/api/budget/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0

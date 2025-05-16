@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-public class BudgetDto {
+public class BudgetRequestDto {
 
     @NotBlank(message = "Le motif ne doit pas etre vide")
     private String motif;

@@ -17,7 +17,6 @@ import java.util.function.Function;
 @AllArgsConstructor
 @Service
 public class JwtService {
-    private final String ENCRIPTION_KEY = "608f36e92dc66d97d5933f0e6371493cb4fc05b1aa8f8de64014732472303a7c";
     private AuthenticationService authenticationService;
 
     public Map<String, String> generate(String username) {
@@ -72,7 +71,8 @@ public class JwtService {
     }
 
     private Key getKey() {
-        final byte[] decoder = Decoders.BASE64.decode(ENCRIPTION_KEY);
+        String ENCRYPTIONKEY = "608f36e92dc66d97d5933f0e6371493cb4fc05b1aa8f8de64014732472303a7c";
+        final byte[] decoder = Decoders.BASE64.decode(ENCRYPTIONKEY);
         return Keys.hmacShaKeyFor(decoder);
     }
 }
