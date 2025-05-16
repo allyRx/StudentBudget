@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -19,4 +22,5 @@ public class Budget {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    private LocalDateTime createdAt;
 }
