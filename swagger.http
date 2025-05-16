@@ -59,11 +59,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
 Content-Type: application/json
 
 {
-  "motif": "Voyages d'etudes",
+  "motif": "Vetement",
   "month": "Mai",
   "description": "Budget pour Juin, couvrant la nourriture, transport, etc.",
   "amount": "800000",
-  "userId": 352
+  "user": {
+    "id" : 352
+  }
 }
 
 
@@ -93,3 +95,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
 //Suppriemer categories
 DELETE localhost:8000/api/category/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+
+###
+//AJouter depenses
+POST localhost:8000/api/depense
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+
+{
+  "description": "Courses alimentaires",
+  "montant": 350000,
+  "budget": {
+    "id": 52
+  },
+  "category": {
+    "id": 52
+  },
+  "user": {
+    "id": 352
+  }
+}

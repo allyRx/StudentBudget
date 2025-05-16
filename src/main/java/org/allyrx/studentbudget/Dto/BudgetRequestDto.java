@@ -19,7 +19,7 @@ public class BudgetRequestDto {
     private String description;
     @NotBlank(message = "Le montant  ne doit pas etre vide" )
     @Pattern(regexp = "^\\d+(\\.\\d{1,2})?$", message = "Montant invalide")
-    private String amount;
+    private Long amount;
     @NotNull(message = "L'identifiant de l'utilisateur est requis")
     private Long userId;
     private LocalDateTime createdAt;

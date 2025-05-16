@@ -11,7 +11,7 @@ public class BudgetResponseDto {
     private String motif;
     private String month;
     private String description;
-    private String amount;
+    private Long amount;
     private Long userId;
     private String username;
     private String email;

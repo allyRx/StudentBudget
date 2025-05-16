@@ -17,7 +17,7 @@ public class Budget {
     private String motif;
     private String month;
     private String description;
-    private String amount;
+    private Long amount;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
