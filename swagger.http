@@ -72,3 +72,24 @@ Content-Type: application/json
 DELETE localhost:8000/api/budget/2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+
+###
+//Ajout category
+POST  localhost:8000/api/category
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+
+{
+  "name": "Depenses Mensuelles"
+}
+
+###
+//Afficher tous les categories
+GET localhost:8000/api/category
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+
+###
+//Suppriemer categories
+DELETE localhost:8000/api/category/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
