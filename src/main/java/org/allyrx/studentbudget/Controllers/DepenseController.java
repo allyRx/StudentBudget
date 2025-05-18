@@ -26,7 +26,7 @@ public class DepenseController {
     }
 
     @GetMapping
-    public List<DepenseResponseDto> getAllDepenses(@RequestHeader("Authorization") String AuthHeader){
+    public List<DepenseResponseDto> getAllDepenses(){
         return  depenseService.getDepense();
     }
 
