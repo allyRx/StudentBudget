@@ -34,4 +34,14 @@ public class DepenseController {
     public Optional<DepenseResponseDto> getDepenseById(@PathVariable Long id){
         return depenseService.getDepeseById(id);
     }
+
+    @DeleteMapping(path = "{id}")
+    public void deleteDepenseById(@PathVariable Long id){
+        depenseService.deleteDepenseById(id);
+    }
+
+    @PutMapping(path = "{id}")
+    public void updateDepenseById(@PathVariable Long id, @RequestBody DepenseRequestDto depenseRequest){
+        depenseService.updateDepense(depenseRequest , id);
+    }
 }

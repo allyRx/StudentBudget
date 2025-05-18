@@ -117,11 +117,38 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
 }
 
 ###
+//Recuperer tous les depenses
 GET localhost:8000/api/depense
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
 
 ###
+//Recuperation depenses par id
 GET localhost:8000/api/depense/252
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
+
+###
+//Suppression de depense par id
+DELETE localhost:8000/api/depense/252
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
+
+###
+//AJouter depenses
+PUT localhost:8000/api/depense/302
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
+
+{
+  "description": "VoyageS",
+  "montant": 93380,
+  "budget": {
+    "id": 52
+  },
+  "category": {
+    "id": 52
+  },
+  "user": {
+    "id": 352
+  }
+}
