@@ -1,7 +1,9 @@
 package org.allyrx.studentbudget.Services;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.allyrx.studentbudget.Dto.DepenseRequestDto;
+import org.allyrx.studentbudget.Dto.DepenseResponseDto;
 import org.allyrx.studentbudget.Entites.Budget;
 import org.allyrx.studentbudget.Entites.Depense;
 import org.allyrx.studentbudget.Entites.User;
@@ -9,10 +11,13 @@ import org.allyrx.studentbudget.Repository.AuthenticationRepository;
 import org.allyrx.studentbudget.Repository.BudgetRepository;
 import org.allyrx.studentbudget.Repository.DepenseRepository;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+
+@Slf4j
 @Service
 @AllArgsConstructor
 public class DepenseService {
@@ -20,14 +25,14 @@ public class DepenseService {
     private DepenseRepository depenseRepository;
     private AuthenticationRepository authenticationRepository;
     private BudgetRepository budgetRepository;
+    private JwtService jwtService;
 
-    public void addDepense(DepenseRequestDto depenseRequest){
+    public void addDepense(DepenseRequestDto depenseRequest, String username){
 
         //verification de l'user
-       Optional<User> user = authenticationRepository.findById(depenseRequest.getUser().getId());
-       if (user.isEmpty()) {throw new RuntimeException("User not found with ID: " + depenseRequest.getId());}
+       Optional<User> user = authenticationRepository.findByEmail(username);
 
-       //verification de budget
+        //verification de budget
        Optional<Budget> budget =budgetRepository.findById(depenseRequest.getBudget().getId());
        if (budget.isEmpty()) {throw new RuntimeException("Budget not found with ID: " + depenseRequest.getId());}
 
@@ -47,12 +52,11 @@ public class DepenseService {
            LocalDateTime now = LocalDateTime.now();
 
            depense.setId(depenseRequest.getId());
-           depense.setDateSpent(depenseRequest.getDateSpent());
            depense.setDescription(depenseRequest.getDescription());
            depense.setMontant(depenseRequest.getMontant());
            depense.setBudget(budget.get());
            depense.setCategory(depenseRequest.getCategory());
-           depense.setUser(user.get());
+           user.ifPresent(depense::setUser); //vue qu'user est optinale on a besoin de faire is present pour l'utiliser
            depense.setDateSpent(now);
 
            depenseRepository.save(depense);
@@ -61,5 +65,40 @@ public class DepenseService {
 
 
 
+    }
+
+    public List<DepenseResponseDto> getDepense(){
+       List  <Depense> allDepense = depenseRepository.findAll();
+       return allDepense.stream().map(depense -> {
+           return new DepenseResponseDto(
+                   depense.getId(),
+                   depense.getDescription(),
+                   depense.getMontant(),
+                   depense.getDateSpent(),
+                   depense.getCategory(),
+                   depense.getBudget().getId(),
+                    depense.getBudget().getAmount(),
+                    depense.getUser().getUsername()
+           );
+       }).collect(Collectors.toList());
+    }
+
+    public Optional<DepenseResponseDto> getDepeseById(Long id){
+       Optional<Depense> depenses = depenseRepository.findById(id);
+       if (depenses.isEmpty()){throw new RuntimeException("Depense not found with ID: " + id);}
+
+       Depense depense = depenses.get();
+
+       DepenseResponseDto depenseResponseDto = new DepenseResponseDto(
+               depense.getId(),
+               depense.getDescription(),
+               depense.getMontant(),
+               depense.getDateSpent(),
+               depense.getCategory(),
+               depense.getBudget().getId(),
+               depense.getBudget().getAmount(),
+               depense.getUser().getUsername()
+       );
+       return Optional.of(depenseResponseDto);
     }
 }

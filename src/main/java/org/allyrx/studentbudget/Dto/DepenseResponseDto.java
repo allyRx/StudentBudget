@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.allyrx.studentbudget.Entites.Budget;
 import org.allyrx.studentbudget.Entites.Category;
-import org.allyrx.studentbudget.Entites.User;
-
 import java.time.LocalDateTime;
 
 @Data
@@ -18,7 +16,7 @@ public class DepenseResponseDto {
     private Long montant;
     private LocalDateTime dateSpent;
     private Category category;
+    private Long budgetId;
+    private Long amountBudget;
     private String username;
-    private User user;
-    private Budget budget;
 }

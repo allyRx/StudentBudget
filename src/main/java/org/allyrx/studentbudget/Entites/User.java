@@ -1,5 +1,6 @@
 package org.allyrx.studentbudget.Entites;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,9 +27,11 @@ public class User implements UserDetails {
     private Role role;
 
     @OneToMany( mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "user-budget")
     private List<Budget> budgets;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "user-depense")
     private List<Depense> depenses;
 
 

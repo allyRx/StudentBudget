@@ -100,11 +100,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
 //AJouter depenses
 POST localhost:8000/api/depense
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
 
 {
-  "description": "Courses alimentaires",
-  "montant": 350000,
+  "description": "Voyages d'etudes",
+  "montant": 3050,
   "budget": {
     "id": 52
   },
@@ -115,3 +115,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
     "id": 352
   }
 }
+
+###
+GET localhost:8000/api/depense
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
+
+###
+GET localhost:8000/api/depense/252
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
