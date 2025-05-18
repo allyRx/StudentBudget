@@ -25,7 +25,6 @@ public class DepenseService {
     private DepenseRepository depenseRepository;
     private AuthenticationRepository authenticationRepository;
     private BudgetRepository budgetRepository;
-    private JwtService jwtService;
 
     public void addDepense(DepenseRequestDto depenseRequest, String username){
 

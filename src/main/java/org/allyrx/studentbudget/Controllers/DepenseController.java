@@ -3,7 +3,6 @@ package org.allyrx.studentbudget.Controllers;
 import lombok.AllArgsConstructor;
 import org.allyrx.studentbudget.Dto.DepenseRequestDto;
 import org.allyrx.studentbudget.Dto.DepenseResponseDto;
-import org.allyrx.studentbudget.Entites.Depense;
 import org.allyrx.studentbudget.Services.DepenseService;
 import org.allyrx.studentbudget.Services.JwtService;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,6 @@ public class DepenseController {
 
     @GetMapping
     public List<DepenseResponseDto> getAllDepenses(@RequestHeader("Authorization") String AuthHeader){
-        String token = AuthHeader.substring(7);
-        String username = jwtService.extractUsername(token);
         return  depenseService.getDepense();
     }
 

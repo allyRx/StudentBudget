@@ -3,7 +3,6 @@ package org.allyrx.studentbudget.Dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.allyrx.studentbudget.Entites.Budget;
 import org.allyrx.studentbudget.Entites.Category;
 import java.time.LocalDateTime;
 
