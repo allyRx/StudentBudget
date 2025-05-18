@@ -61,9 +61,6 @@ public class DepenseService {
            depenseRepository.save(depense);
        }
 
-
-
-
     }
 
     public List<DepenseResponseDto> getDepense(){
@@ -99,5 +96,48 @@ public class DepenseService {
                depense.getUser().getUsername()
        );
        return Optional.of(depenseResponseDto);
+    }
+
+    public  void deleteDepenseById(Long id){
+        depenseRepository.deleteById(id);
+    }
+
+    public void updateDepense(DepenseRequestDto depenseRequest, Long id){
+
+        //Recuperons le depense ancien par son id
+        Optional<Depense> oldDepense = depenseRepository.findById(id);
+        if (oldDepense.isEmpty()){throw new RuntimeException("Depense not found with ID: " + id);}
+        Depense depense = oldDepense.get();
+
+        //verifions l'user
+        Optional<User> user = authenticationRepository.findById(id);
+        if (user.isEmpty()){throw new RuntimeException("User not found with id: " + id);}
+
+        //recuperons le budget pour verifier la disponibilite du budget
+        Optional<Budget> budget = Optional.of(budgetRepository.findById(depenseRequest.getBudget().getId()).get());
+
+        //Les logique pour gerer les depenses et le budget totale
+        Long budgetReste = budget.get().getAmount();
+        Long DoDepense = depenseRequest.getMontant();
+
+        if (DoDepense > budgetReste){
+            throw new RuntimeException("your budget doesn't have enough money for this spent");
+        }else if (DoDepense < budgetReste) {
+
+            budgetReste -= DoDepense;
+            budget.get().setAmount(budgetReste);
+            budgetRepository.save(budget.get());
+
+            depense.setDescription(depenseRequest.getDescription());
+            depense.setMontant(depenseRequest.getMontant());
+            depense.setBudget(budget.get());
+            depense.setCategory(depenseRequest.getCategory());
+            user.ifPresent(depense::setUser); //vue qu'user est optinale on a besoin de faire is present pour l'utiliser
+            depense.setDateSpent(LocalDateTime.now());
+
+            depenseRepository.save(depense);
+
+        }
+
     }
 }

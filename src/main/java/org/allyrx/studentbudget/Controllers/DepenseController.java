@@ -26,12 +26,22 @@ public class DepenseController {
     }
 
     @GetMapping
-    public List<DepenseResponseDto> getAllDepenses(@RequestHeader("Authorization") String AuthHeader){
+    public List<DepenseResponseDto> getAllDepenses(){
         return  depenseService.getDepense();
     }
 
     @GetMapping(path = "{id}")
     public Optional<DepenseResponseDto> getDepenseById(@PathVariable Long id){
         return depenseService.getDepeseById(id);
+    }
+
+    @DeleteMapping(path = "{id}")
+    public void deleteDepenseById(@PathVariable Long id){
+        depenseService.deleteDepenseById(id);
+    }
+
+    @PutMapping(path = "{id}")
+    public void updateDepenseById(@PathVariable Long id, @RequestBody DepenseRequestDto depenseRequest){
+        depenseService.updateDepense(depenseRequest , id);
     }
 }
