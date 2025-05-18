@@ -1,10 +1,17 @@
 package org.allyrx.studentbudget.Entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Depense {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,9 +26,11 @@ public class Depense {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference("user-depense")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "budget_id")
+    @JsonBackReference("budget-depense")
     private Budget budget;
 }

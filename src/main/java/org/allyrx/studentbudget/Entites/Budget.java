@@ -1,5 +1,7 @@
 package org.allyrx.studentbudget.Entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,12 +19,14 @@ public class Budget {
     private String motif;
     private String month;
     private String description;
-    private String amount;
+    private Long amount;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference(value = "user-budget")
     private User user;
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "budget" ,cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "budget-depense")
     private List<Depense> depense;
 }
