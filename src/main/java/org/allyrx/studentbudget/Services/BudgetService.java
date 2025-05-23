@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 public class BudgetService {
     private final AuthenticationRepository authenticationRepository;
     private BudgetRepository  budgetRepository;
+    private NotificationService notificationService;
 
-
-    public void addBudget(BudgetRequestDto budgetRequestDto){
+    public void addBudget(BudgetRequestDto budgetRequestDto , String username) {
         LocalDateTime now = LocalDateTime.now();
         //Verifions si l'user est bien la
         Optional <User> user = authenticationRepository.findByEmail(budgetRequestDto.getEmail());
@@ -35,6 +35,8 @@ public class BudgetService {
         budget.setCreatedAt(now);
         budgetRepository.save(budget);
 
+        //pour evoyer de notif a l'etudiant  pour chaque budget
+        notificationService.sendBudget( username, budget);
     }
 
     //Affichage de tous les budgets

@@ -56,7 +56,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsb
 
 ###
 PUT localhost:8000/api/budget/152
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
+Authorization: Bearer yJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MzQ4MzMsIm5vbSI6InVzZXIiLCJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIn0.TISQnqVqSIJ1bdjCn6JJjXW559Yyd8xEw_j4xNcTYog
 Content-Type: application/json
 
 {
