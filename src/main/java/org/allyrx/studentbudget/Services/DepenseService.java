@@ -127,6 +127,7 @@ public class DepenseService {
 
         //recuperons le budget pour verifier la disponibilite du budget
         Optional<Budget> budget = budgetRepository.findByMotif(depenseRequest.getMotif());
+        if (budget.isEmpty()){throw new RuntimeException("Budget not found");}
 
         //Les logique pour gerer les depenses et le budget totale
         Long budgetReste = budget.get().getAmount();

@@ -8,7 +8,9 @@ package org.allyrx.studentbudget.Services;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.allyrx.studentbudget.Entites.Role;
+import org.allyrx.studentbudget.Entites.User;
 import org.allyrx.studentbudget.Enum.RoleEnum;
+import org.allyrx.studentbudget.Repository.AuthenticationRepository;
 import org.allyrx.studentbudget.Repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ public class RoleService {
     //Logger pour afficher des messages dasn la console
     private final Logger logger = Logger.getLogger(RoleService.class.getName());
     private final RoleRepository roleRepository;
+    private final AuthenticationRepository authenticationRepository;
 
     //Methode executer automatiquement apres l'initialisation du bean spring(l'application)
     @PostConstruct
@@ -57,5 +60,20 @@ public class RoleService {
     //Methode publique pour retrouver un role selon son nom
     public Optional<Role> findByRoleName(RoleEnum roleName) {
         return roleRepository.findByRoleName(roleName);
+    }
+
+
+    public void setParentRole(Long id){
+        Optional<User> userSearch = authenticationRepository.findById(id);
+        if(userSearch.isEmpty()){throw new RuntimeException("User not found");}
+
+        User user = userSearch.get();
+
+        Optional<Role> roleParent = roleRepository.findByRoleName(RoleEnum.PARENT);
+        if(roleParent.isEmpty()){throw new RuntimeException("Role not found");}
+
+        user.setRole(roleParent.get());
+
+        authenticationRepository.save(user);
     }
 }

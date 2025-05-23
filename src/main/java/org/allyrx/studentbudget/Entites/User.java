@@ -2,6 +2,7 @@ package org.allyrx.studentbudget.Entites;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class User implements UserDetails {
     private String password;
     private Boolean enabled;
     @ManyToOne(cascade = CascadeType.ALL)
+    @NotNull
     private Role role;
 
     @OneToMany( mappedBy = "user", cascade = CascadeType.ALL)
