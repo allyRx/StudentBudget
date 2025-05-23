@@ -6,6 +6,7 @@ import org.allyrx.studentbudget.Dto.BudgetRequestDto;
 import org.allyrx.studentbudget.Dto.BudgetResponseDto;
 import org.allyrx.studentbudget.Services.BudgetService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class BudgetController {
     private final BudgetService budgetService;
 
     @PostMapping
+    @PreAuthorize("hasRole('PARENT')")
     @ResponseStatus(HttpStatus.CREATED)
     public void addBudget(@Valid @RequestBody BudgetRequestDto budgetRequestDto){
         budgetService.addBudget(budgetRequestDto);

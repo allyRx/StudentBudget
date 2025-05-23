@@ -9,11 +9,9 @@ import org.allyrx.studentbudget.Services.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -52,5 +50,10 @@ public class AuthenticationController{
             throw new RuntimeException("Invalid credentials");
         }
 
+    }
+
+    @GetMapping
+    public List<User> allUsers() {
+        return  authenticationService.getAllUsers();
     }
 }

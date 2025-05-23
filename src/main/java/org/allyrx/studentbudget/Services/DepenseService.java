@@ -5,10 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.allyrx.studentbudget.Dto.DepenseRequestDto;
 import org.allyrx.studentbudget.Dto.DepenseResponseDto;
 import org.allyrx.studentbudget.Entites.Budget;
+import org.allyrx.studentbudget.Entites.Category;
 import org.allyrx.studentbudget.Entites.Depense;
 import org.allyrx.studentbudget.Entites.User;
 import org.allyrx.studentbudget.Repository.AuthenticationRepository;
 import org.allyrx.studentbudget.Repository.BudgetRepository;
+import org.allyrx.studentbudget.Repository.CategoryRepository;
 import org.allyrx.studentbudget.Repository.DepenseRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class DepenseService {
 
+    private final CategoryRepository categoryRepository;
     private DepenseRepository depenseRepository;
     private AuthenticationRepository authenticationRepository;
     private BudgetRepository budgetRepository;
@@ -32,8 +35,12 @@ public class DepenseService {
        Optional<User> user = authenticationRepository.findByEmail(username);
 
         //verification de budget
-       Optional<Budget> budget =budgetRepository.findById(depenseRequest.getBudget().getId());
-       if (budget.isEmpty()) {throw new RuntimeException("Budget not found with ID: " + depenseRequest.getId());}
+       Optional<Budget> budget =budgetRepository.findByMotif(depenseRequest.getMotif());
+       if (budget.isEmpty()) {throw new RuntimeException("Budget not found ");}
+
+       //verifions le categories
+        Optional<Category> category = categoryRepository.findByName(depenseRequest.getNameCategory());
+        if (category.isEmpty()) {throw new RuntimeException("Category not found ");}
 
        //Les logique pour gerer les depenses et le budget totale
        Long budgetReste = budget.get().getAmount();
@@ -54,9 +61,10 @@ public class DepenseService {
            depense.setDescription(depenseRequest.getDescription());
            depense.setMontant(depenseRequest.getMontant());
            depense.setBudget(budget.get());
-           depense.setCategory(depenseRequest.getCategory());
+           depense.setCategory(category.get());
            user.ifPresent(depense::setUser); //vue qu'user est optinale on a besoin de faire is present pour l'utiliser
            depense.setDateSpent(now);
+
 
            depenseRepository.save(depense);
        }
@@ -102,7 +110,7 @@ public class DepenseService {
         depenseRepository.deleteById(id);
     }
 
-    public void updateDepense(DepenseRequestDto depenseRequest, Long id){
+    public void updateDepense(DepenseRequestDto depenseRequest, Long id ,String username){
 
         //Recuperons le depense ancien par son id
         Optional<Depense> oldDepense = depenseRepository.findById(id);
@@ -110,11 +118,15 @@ public class DepenseService {
         Depense depense = oldDepense.get();
 
         //verifions l'user
-        Optional<User> user = authenticationRepository.findById(id);
-        if (user.isEmpty()){throw new RuntimeException("User not found with id: " + id);}
+        Optional<User> user = authenticationRepository.findByEmail(username);
+        if (user.isEmpty()){throw new RuntimeException("User not found");}
+
+        //verifions le categories
+        Optional<Category> category = categoryRepository.findByName(depenseRequest.getNameCategory());
+        if (category.isEmpty()) {throw new RuntimeException("Category not found ");}
 
         //recuperons le budget pour verifier la disponibilite du budget
-        Optional<Budget> budget = Optional.of(budgetRepository.findById(depenseRequest.getBudget().getId()).get());
+        Optional<Budget> budget = budgetRepository.findByMotif(depenseRequest.getMotif());
 
         //Les logique pour gerer les depenses et le budget totale
         Long budgetReste = budget.get().getAmount();
@@ -131,7 +143,7 @@ public class DepenseService {
             depense.setDescription(depenseRequest.getDescription());
             depense.setMontant(depenseRequest.getMontant());
             depense.setBudget(budget.get());
-            depense.setCategory(depenseRequest.getCategory());
+            depense.setCategory(category.get());
             user.ifPresent(depense::setUser); //vue qu'user est optinale on a besoin de faire is present pour l'utiliser
             depense.setDateSpent(LocalDateTime.now());
 

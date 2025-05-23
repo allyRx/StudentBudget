@@ -23,7 +23,7 @@ public class BudgetService {
     public void addBudget(BudgetRequestDto budgetRequestDto){
         LocalDateTime now = LocalDateTime.now();
         //Verifions si l'user est bien la
-        Optional <User> user = authenticationRepository.findById(budgetRequestDto.getUserId());
+        Optional <User> user = authenticationRepository.findByEmail(budgetRequestDto.getEmail());
         if(user.isEmpty()){ throw new RuntimeException("User not found"); }
 
         Budget budget = new Budget();
@@ -98,10 +98,10 @@ public class BudgetService {
         budget.setCreatedAt(LocalDateTime.now());
 
         // Mise à jour de l'utilisateur associé si un userId est fourni
-        if (budgetRequestDto.getUserId() != null) {
-            Optional<User> optionalUser = authenticationRepository.findById(budgetRequestDto.getUserId());
+        if (budgetRequestDto.getEmail() != null) {
+            Optional<User> optionalUser = authenticationRepository.findByEmail(budgetRequestDto.getEmail());
             if (optionalUser.isEmpty()) {
-                throw new RuntimeException("User not found with ID: " + budgetRequestDto.getUserId());
+                throw new RuntimeException("User not found with email: " + budgetRequestDto.getEmail());
             }
             budget.setUser(optionalUser.get());
         }

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ public class AuthenticationService implements UserDetailsService {
     private final AuthenticationRepository authenticationRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final ValidationRepository validationRepository;
+    private final RoleService roleService;
     private validationService validationService;
 
 
@@ -40,9 +42,11 @@ public class AuthenticationService implements UserDetailsService {
         if(isUserFound.isPresent()){throw new RuntimeException("User already exists");}
 
         //Mettons le role pardefaut en etudiant
-        Role role = new Role();
-        role.setRoleName(RoleEnum.STUDENT);
-        user.setRole(role);
+        Optional<Role> defaultRole = roleService.findByRoleName(RoleEnum.STUDENT);
+        if(defaultRole.isEmpty()){
+            throw new RuntimeException("Invalid role");
+        }
+        user.setRole(defaultRole.get());
         user.setEnabled(false);
 
         //cryptage du mot de passe
@@ -83,4 +87,7 @@ public class AuthenticationService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    public List<User> getAllUsers() {
+        return authenticationRepository.findAll();
+    }
 }

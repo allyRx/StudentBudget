@@ -17,10 +17,9 @@ public class BudgetRequestDto {
     @NotBlank(message = "Le motif ne doit pas etre vide" )
     private String month;
     private String description;
-    @NotBlank(message = "Le montant  ne doit pas etre vide" )
-    @Pattern(regexp = "^\\d+(\\.\\d{1,2})?$", message = "Montant invalide")
+    @NotNull
     private Long amount;
     @NotNull(message = "L'identifiant de l'utilisateur est requis")
-    private Long userId;
+    private String email;
     private LocalDateTime createdAt;
 }
