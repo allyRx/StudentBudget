@@ -1,0 +1,39 @@
+//Inscription
+POST localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "albert",
+  "email": "ally@contact.fr",
+  "password": "123456"
+}
+
+###
+
+//activation du compte
+POST localhost:8000/api/auth/activate
+Content-Type: application/json
+
+{
+  "code":"833646"
+}
+
+###
+//authentification
+POST localhost:8000/api/auth/connexion
+Content-Type: application/json
+
+{
+  "email": "ally@contact.fr",
+  "password": "123456"
+}
+
+###
+//recuperation de tous les utilisateurs
+GET localhost:8000/api/auth
+Content-Type: application/json
+###
+//Recuperation des tous les utilisateurs
+GET localhost:8000/api/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJub20iOiJhbGJlcnQiLCJzdWIiOiJhbGx5QGNvbnRhY3QuZnIiLCJleHAiOjE3NTE2MzQxOTl9.6k6bRJdErVvKUgbCDonqiwKVF3Zbo2ldzqpNR_3GGqg

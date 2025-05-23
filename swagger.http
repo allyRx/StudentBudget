@@ -3,10 +3,11 @@ POST localhost:8000/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "user",
-  "email": "ally@contact.com",
+  "username": "raphael",
+  "email": "raphal@contact.com",
   "password": "123456"
 }
+
 
 ###
 
@@ -15,7 +16,7 @@ POST localhost:8000/api/auth/activate
 Content-Type: application/json
 
 {
-  "code":"204466"
+  "code":"098861"
 }
 
 ###
@@ -24,7 +25,7 @@ POST localhost:8000/api/auth/connexion
 Content-Type: application/json
 
 {
-  "email": "ally@contact.com",
+  "email": "raphal@contact.com",
   "password": "123456"
 }
 
@@ -32,7 +33,7 @@ Content-Type: application/json
 //Ajout budget
 POST localhost:8000/api/budget
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJub20iOiJ1c2VyIiwic3ViIjoiYWxseUBjb250YWN0LmNvbSIsImV4cCI6MTc1MTYzNDUxMH0.LM7LXmuWpBewsGvsWOaxRYFjAN2xQJtWHhlaFfIRXp8
 
 {
   "motif": "Dépenses mensuelles",
@@ -113,7 +114,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsb
 //Recuperer tous les depenses
 GET localhost:8000/api/depense
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MzQ4MzMsIm5vbSI6InVzZXIiLCJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIn0.TISQnqVqSIJ1bdjCn6JJjXW559Yyd8xEw_j4xNcTYog
 
 ###
 //Recuperation depenses par id
@@ -138,3 +139,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsb
   "motif": "Vetement",
   "nameCategory": "Depenses Mensuelles"
 }
+
+###
+//mettre un user en parent
+localhost:8000/api/role/802
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJub20iOiJhbGJlcnQiLCJzdWIiOiJhbGx5QGNvbnRhY3QuZnIiLCJleHAiOjE3NTE2MzQxOTl9.6k6bRJdErVvKUgbCDonqiwKVF3Zbo2ldzqpNR_3GGqg
+
+
+
+//token_parent :eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MzQ4MzMsIm5vbSI6InVzZXIiLCJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIn0.TISQnqVqSIJ1bdjCn6JJjXW559Yyd8xEw_j4xNcTYog
+
+//token_etudiant :eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MzQ5MzIsIm5vbSI6InJhcGhhZWwiLCJzdWIiOiJyYXBoYWxAY29udGFjdC5jb20ifQ.uqXDqWJZt74b08E4YVqBUyYbS_clJ1_lbegH1u3lduI
+
+//token_admin :eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MzQ4NjEsIm5vbSI6ImFsYmVydCIsInN1YiI6ImFsbHlAY29udGFjdC5mciJ9.zU_Fl4YqykNiP_KX6th-ICsjECD8nawk4qR-lY8oXWw

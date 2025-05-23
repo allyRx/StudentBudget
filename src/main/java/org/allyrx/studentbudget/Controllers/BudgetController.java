@@ -20,8 +20,8 @@ public class BudgetController {
     private final BudgetService budgetService;
 
     @PostMapping
-    @PreAuthorize("hasRole('PARENT')")
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('PARENT')")
     public void addBudget(@Valid @RequestBody BudgetRequestDto budgetRequestDto){
         budgetService.addBudget(budgetRequestDto);
     }

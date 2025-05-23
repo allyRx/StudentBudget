@@ -34,8 +34,26 @@ public class ApplicationSecurity {
                 http
                         .csrf(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers(HttpMethod.POST , "/auth/**").permitAll()
-                                .anyRequest().authenticated())
+                                // Authentification ouverte
+                                .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+
+                                // Budget : GET pour parent et étudiant / autre que GET pour parent seulement
+                                .requestMatchers(HttpMethod.GET, "/budget/**").hasAnyRole("PARENT", "STUDENT")
+                                .requestMatchers("/budget/**").hasRole("PARENT")
+
+                                // Dépense : GET pour étudiant et parent / autre que GET pour étudiant seulement
+                                .requestMatchers(HttpMethod.GET, "/depense/**").hasAnyRole("STUDENT", "PARENT")
+                                .requestMatchers("/depense/**").hasRole("STUDENT")
+
+                                // Catégories : gérées uniquement par l'étudiant
+                                .requestMatchers("/category/**").hasRole("STUDENT")
+
+                                // Rôles : gérés uniquement par l'admin
+                                .requestMatchers("/role/**").hasRole("ADMIN")
+
+                                // Toute autre requête doit être authentifiée
+                                .anyRequest().authenticated()
+                        )
                                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
