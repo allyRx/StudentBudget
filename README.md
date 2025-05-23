@@ -56,7 +56,7 @@ Cette application permet à un **étudiant** de saisir ses dépenses mensuelles 
 - cd StudentBudget
 - docker-compose up -d
   ```
-#Prerequis 
+# Prerequis 
 - IDE
 - docker
 
