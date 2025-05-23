@@ -37,7 +37,7 @@ public class validationService {
 
         validationRepository.save(validation);
 
-        notificationService.sendNotification(validation);
+        notificationService.sendNotificationValidation(validation);
     }
 
     //pour verifier le code dans la table validation
