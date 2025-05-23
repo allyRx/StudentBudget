@@ -1,7 +1,6 @@
 package org.allyrx.studentbudget.Services;
 
 import lombok.AllArgsConstructor;
-import org.allyrx.studentbudget.Entites.Refreshtoken;
 import org.allyrx.studentbudget.Entites.Role;
 import org.allyrx.studentbudget.Entites.User;
 import org.allyrx.studentbudget.Entites.Validation;
