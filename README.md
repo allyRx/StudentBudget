@@ -54,7 +54,7 @@ Cette application permet à un **étudiant** de saisir ses dépenses mensuelles 
  ```
 - git clone https://github.com/allyRx/StudentBudget.git
 - cd StudentBudget
-- dcker-compose up -d
+- docker-compose up -d
   ```
 #Prerequis 
 - IDE
