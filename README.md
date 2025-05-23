@@ -1,4 +1,3 @@
-# Projet en cours...
 
 # 💰 Student Budget Control
 
@@ -51,6 +50,15 @@ Cette application permet à un **étudiant** de saisir ses dépenses mensuelles 
 - Méthodologie : **Agile**, **MVP**
 
 ---
+## Installation
+ ```
+- git clone https://github.com/allyRx/StudentBudget.git
+- cd StudentBudget
+- dcker-compose up -d
+  ```
+#Prerequis 
+- IDE
+- docker
 
 ## 🧪 Endpoints principaux
 
