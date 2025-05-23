@@ -16,7 +16,7 @@ public class DepenseRequestDto {
     private String description;
     private Long montant;
     private LocalDateTime dateSpent;
-    private Category category;
-    private User user;
-    private Budget budget;
+    private String nameCategory;
+    private String email;
+    private String motif;
 }

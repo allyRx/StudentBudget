@@ -41,7 +41,9 @@ public class DepenseController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateDepenseById(@PathVariable Long id, @RequestBody DepenseRequestDto depenseRequest){
-        depenseService.updateDepense(depenseRequest , id);
+    public void updateDepenseById(@PathVariable Long id, @RequestHeader("Authorization") String AuthHeader,@RequestBody DepenseRequestDto depenseRequest){
+        String token = AuthHeader.substring(7);
+        String username = jwtService.extractUsername(token);
+        depenseService.updateDepense(depenseRequest , id , username);
     }
 }

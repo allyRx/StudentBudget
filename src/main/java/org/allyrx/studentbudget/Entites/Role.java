@@ -11,6 +11,7 @@ import org.allyrx.studentbudget.Enum.RoleEnum;
 public class Role {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true, nullable = false)
     @Enumerated(EnumType.STRING)
     private RoleEnum roleName;
 }

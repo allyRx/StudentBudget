@@ -11,11 +11,11 @@ Content-Type: application/json
 ###
 
 //activation du compte
-POST localhost:8000/api/activate
+POST localhost:8000/api/auth/activate
 Content-Type: application/json
 
 {
-  "code":"775386"
+  "code":"204466"
 }
 
 ###
@@ -32,30 +32,30 @@ Content-Type: application/json
 //Ajout budget
 POST localhost:8000/api/budget
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 {
   "motif": "Dépenses mensuelles",
   "month": "Juin",
   "description": "Budget pour Juin, couvrant la nourriture, transport, etc.",
-  "amount": "200000",
-  "userId": 352
+  "amount": "2000",
+  "email": "ally@contact.fr"
 }
 
 
 ###
 //recuperation budgets
 GET localhost:8000/api/budget
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 ###
 //Recuperation de budgets par Id
-GET localhost:8000/api/budget/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+GET localhost:8000/api/budget/152
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 ###
-PUT localhost:8000/api/budget/52
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+PUT localhost:8000/api/budget/152
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 Content-Type: application/json
 
 {
@@ -79,7 +79,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
 //Ajout category
 POST  localhost:8000/api/category
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 {
   "name": "Depenses Mensuelles"
@@ -89,38 +89,31 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
 //Afficher tous les categories
 GET localhost:8000/api/category
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 ###
 //Suppriemer categories
 DELETE localhost:8000/api/category/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAwMDY3NH0.YsWlUYOMsst-RdZ1t6w6K7jQtUhdUjYuGJF8bZ6i-V0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 ###
 //AJouter depenses
 POST localhost:8000/api/depense
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 {
   "description": "Voyages d'etudes",
-  "montant": 3050,
-  "budget": {
-    "id": 52
-  },
-  "category": {
-    "id": 52
-  },
-  "user": {
-    "id": 352
-  }
+  "montant": 103050,
+  "motif": "Vetement",
+  "nameCategory": "Depenses Mensuelles"
 }
 
 ###
 //Recuperer tous les depenses
 GET localhost:8000/api/depense
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 ###
 //Recuperation depenses par id
@@ -135,20 +128,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwib
 
 ###
 //AJouter depenses
-PUT localhost:8000/api/depense/302
+PUT localhost:8000/api/depense/453
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5QGNvbnRhY3QuY29tIiwibm9tIjoidXNlciIsImV4cCI6MTc1MTAzMjQ5NH0.XLbDj8JzXJ2LiCm-hCzGWzaOkKQ9eqw62E2StAm3224
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NTE2MjU0NDUsInN1YiI6ImFsbHlAY29udGFjdC5mciIsIm5vbSI6ImFsYmVydCJ9.6Bgk05vvBM4or0HvjH6X-WDc2xMSds_0r9-QVvyTalE
 
 {
-  "description": "VoyageS",
-  "montant": 93380,
-  "budget": {
-    "id": 52
-  },
-  "category": {
-    "id": 52
-  },
-  "user": {
-    "id": 352
-  }
+  "description": "Togue",
+  "montant": 100,
+  "motif": "Vetement",
+  "nameCategory": "Depenses Mensuelles"
 }
